@@ -5,8 +5,46 @@
   --accent-2: #d95d39;
   --surface: #fffcf5;
   --line: #d4d0c6;
+  --chip-bg: #f0ece3;
+  --chip-line: #ddd7ca;
+  --pill-bg: #efe9dc;
+  --pill-line: #d7cfbf;
+  --pill-hover: #e8dfcf;
+  --meta: #4f4f4f;
+  --tech: #3f3f3f;
+  --bg-spot-1: rgba(217, 93, 57, 0.14);
+  --bg-spot-2: rgba(11, 110, 79, 0.17);
+  --shape-left-1: #ffd6a5;
+  --shape-left-2: #ff8c61;
+  --shape-right-1: #9fd3c7;
+  --shape-right-2: #68b0ab;
+  --btn-primary-bg: #171717;
+  --btn-primary-fg: #ffffff;
   --maxw: 1080px;
   --shadow: 0 18px 45px rgba(23, 23, 23, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #121516;
+  --ink: #f2f4f5;
+  --surface: #1b2022;
+  --line: #2f3a3d;
+  --chip-bg: #243034;
+  --chip-line: #344448;
+  --pill-bg: #243237;
+  --pill-line: #385056;
+  --pill-hover: #2d3f45;
+  --meta: #c5cccf;
+  --tech: #d1d7d9;
+  --bg-spot-1: rgba(217, 93, 57, 0.2);
+  --bg-spot-2: rgba(11, 110, 79, 0.22);
+  --shape-left-1: #744734;
+  --shape-left-2: #8d5039;
+  --shape-right-1: #29524d;
+  --shape-right-2: #2a6462;
+  --btn-primary-bg: #f2f4f5;
+  --btn-primary-fg: #121516;
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -22,10 +60,11 @@ body {
   font-family: "Space Grotesk", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 15% 10%, rgba(217, 93, 57, 0.14), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(11, 110, 79, 0.17), transparent 40%),
+    radial-gradient(circle at 15% 10%, var(--bg-spot-1), transparent 35%),
+    radial-gradient(circle at 80% 0%, var(--bg-spot-2), transparent 40%),
     var(--bg);
   min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .bg-shape {
@@ -41,13 +80,19 @@ body {
 .bg-shape-left {
   top: -100px;
   left: -120px;
-  background: linear-gradient(135deg, #ffd6a5, #ff8c61);
+  background: linear-gradient(135deg, var(--shape-left-1), var(--shape-left-2));
 }
 
 .bg-shape-right {
   bottom: -140px;
   right: -90px;
-  background: linear-gradient(135deg, #9fd3c7, #68b0ab);
+  background: linear-gradient(135deg, var(--shape-right-1), var(--shape-right-2));
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .site-header {
@@ -83,6 +128,22 @@ body {
   color: var(--ink);
   text-decoration: none;
   font-weight: 500;
+}
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.42rem 0.8rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  filter: brightness(0.97);
 }
 
 main {
@@ -149,8 +210,8 @@ main {
 }
 
 .btn-primary {
-  background: var(--ink);
-  color: #fff;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
 }
 
 .btn-ghost {
@@ -172,6 +233,12 @@ main {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.info-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .skills-grid {
@@ -220,16 +287,60 @@ main {
   align-items: center;
   padding: 0.34rem 0.62rem;
   border-radius: 999px;
-  background: #f0ece3;
-  border: 1px solid #ddd7ca;
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-line);
   font-size: 0.9rem;
   line-height: 1.2;
 }
 
 .tech {
-  color: #3f3f3f;
+  color: var(--tech);
   font-size: 0.95rem;
   margin-top: 0.7rem;
+}
+
+.profile-links {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.profile-links a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-line);
+  border-radius: 999px;
+  padding: 0.42rem 0.78rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.profile-links a:hover {
+  background: var(--pill-hover);
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.info-card h3 {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.12rem;
+}
+
+.meta {
+  margin: 0.45rem 0 0;
+  color: var(--meta);
+  font-weight: 500;
 }
 
 .site-footer {
@@ -274,12 +385,20 @@ main {
     gap: 0.7rem;
   }
 
+  .header-controls {
+    flex-direction: column;
+  }
+
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;
   }
 
   .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-grid {
     grid-template-columns: 1fr;
   }
 }
