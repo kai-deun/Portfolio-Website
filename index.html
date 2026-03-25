@@ -47,7 +47,6 @@
 
     <main id="top">
       <section class="hero reveal">
-        <p class="eyebrow">Open to Internship Opportunities</p>
         <h1>
           Hi, I am <span class="accent">Phil Harry C. Ignacio</span>, a
           <span class="accent">Computer Science Student</span>.
@@ -130,10 +129,23 @@
           <article class="info-card">
             <h3>Trend Cyber Defense Society</h3>
             <p class="meta">March 15 2024</p>
+            <button class="btn btn-primary cert-trigger" type="button" data-title="Trend Cyber Defense Society" data-certificate="">
+              View Certificate
+            </button>
           </article>
           <article class="info-card">
             <h3>Dyson Virtual Event</h3>
             <p class="meta">March 17 2026</p>
+            <button class="btn btn-primary cert-trigger" type="button" data-title="Dyson Virtual Event" data-certificate="">
+              View Certificate
+            </button>
+          </article>
+          <article class="info-card">
+            <h3>2nd International AI Edutech Summit</h3>
+            <p class="meta">March 23 2026</p>
+            <button class="btn btn-primary cert-trigger" type="button" data-title="2nd International AI Edutech Summit" data-certificate="">
+              View Certificate
+            </button>
           </article>
         </div>
       </section>
@@ -242,6 +254,18 @@
         </a>
       </section>
     </main>
+
+    <div class="modal-backdrop" id="certificate-modal" aria-hidden="true">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="certificate-modal-title">
+        <div class="modal-header">
+          <h3 id="certificate-modal-title">Certificate</h3>
+          <button class="modal-close" id="certificate-modal-close" type="button" aria-label="Close certificate modal">
+            Close
+          </button>
+        </div>
+        <div class="modal-content" id="certificate-modal-content"></div>
+      </section>
+    </div>
 
     <footer class="site-footer">
     </footer>
