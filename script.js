@@ -92,8 +92,14 @@ certTriggers.forEach((trigger) => {
   trigger.addEventListener('click', () => {
     const title = trigger.getAttribute('data-title') || 'Seminar';
     const certificatePath = trigger.getAttribute('data-certificate') || '';
-    setModalContent(title, certificatePath);
-    openCertModal();
+
+    if (!certificatePath) {
+      setModalContent(title, certificatePath);
+      openCertModal();
+      return;
+    }
+
+    window.open(certificatePath, '_blank', 'noopener,noreferrer');
   });
 });
 
