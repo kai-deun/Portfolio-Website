@@ -6,7 +6,7 @@ This portfolio is a static website designed for GitHub Pages deployment from the
 
 1. Update your personal details in `index.html`.
 2. Replace skills and project text with data from your latest resume.
-3. Place your latest resume PDF at `assets/Resume.pdf`.
+3. Place your latest resume PDF at `assets/Ignacio_Phil_Harry_Resume.pdf`.
 4. Commit and push to `main`.
 
 ## Deployment
