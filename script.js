@@ -6,7 +6,7 @@ const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 function applyTheme(theme) {
   root.setAttribute('data-theme', theme);
   if (themeToggle) {
-    themeToggle.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 }
 
@@ -20,6 +20,7 @@ if (themeToggle) {
   });
 }
 
+// Navigation scroll tracking using IntersectionObserver
 const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
 const sections = navLinks
   .map((link) => document.querySelector(link.getAttribute('href')))
@@ -35,11 +36,37 @@ const observer = new IntersectionObserver(
       });
     });
   },
-  { threshold: 0.45 }
+  { threshold: 0.35 }
 );
 
 sections.forEach((section) => observer.observe(section));
 
+// Projects Category Filtering Logic
+const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+const projectCards = Array.from(document.querySelectorAll('.project-card'));
+
+filterButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    // Toggle active state on buttons
+    filterButtons.forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filterValue = btn.getAttribute('data-filter') || 'all';
+
+    projectCards.forEach((card) => {
+      const categories = card.getAttribute('data-categories') || '';
+      const categoriesArray = categories.split(' ');
+
+      if (filterValue === 'all' || categoriesArray.includes(filterValue)) {
+        card.classList.remove('filtered-out');
+      } else {
+        card.classList.add('filtered-out');
+      }
+    });
+  });
+});
+
+// Certificate Modal Logic
 const certModal = document.getElementById('certificate-modal');
 const certModalContent = document.getElementById('certificate-modal-content');
 const certModalTitle = document.getElementById('certificate-modal-title');
@@ -55,7 +82,7 @@ function setModalContent(title, certificatePath) {
   if (!certificatePath) {
     const emptyMessage = document.createElement('p');
     emptyMessage.className = 'certificate-empty';
-    emptyMessage.textContent = 'The certificate is still not given';
+    emptyMessage.textContent = 'Preview not available yet. The certificate will be updated soon!';
     certModalContent.appendChild(emptyMessage);
     return;
   }
