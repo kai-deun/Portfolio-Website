@@ -819,6 +819,15 @@ main {
   background: rgba(249, 115, 22, 0.15);
 }
 
+.project-badge.security {
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+}
+
+[data-theme="dark"] .project-badge.security {
+  background: rgba(239, 68, 68, 0.15);
+}
+
 .project-card h3 {
   margin: 0;
   font-size: 1.3rem;
